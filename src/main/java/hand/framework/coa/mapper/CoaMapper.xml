@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"        
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="hand.framework.coa.mapper.CoaMapper">
+ 
+  <sql id="General_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+ <select id="getByCondition" resultType="hand.framework.coa.entity.COAConfig">
+	  	 select * from(
+	  	 SELECT hou.organization_id as organizationId,
+			    fifs.form_left_prompt as prompt,
+			    fifs.segment_num as segmentNum
+			FROM hr_operating_units      hou,
+					 gl_sets_of_books gsb,
+					 fnd_id_flex_segments_vl fifs
+		 WHERE hou.set_of_books_id = gsb.set_of_books_id
+			 AND fifs.id_flex_num = gsb.chart_of_accounts_id
+			 AND fifs.id_flex_code = 'GL#'
+		)
+			<include refid="General_Where_Clause"></include>
+			order by segmentNum asc
+  </select>
+  
+</mapper>

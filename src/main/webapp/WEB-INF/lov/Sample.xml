@@ -1,0 +1,27 @@
+<root>
+	<lov id="hand.common.lov.Sample">
+	<!-- 
+		Lov 查询的SQL
+		目前只支持简单的查询，如果查询语句太复杂
+		需要在最外层加多一层select xxxx AS xxxxx,yyyyy AS yyyy from (SQL语句)
+	 -->
+		<sql> 
+	<![CDATA[
+     SELECT ppf.person_id as person_id,
+            ppf.full_name as full_name
+	   FROM per_all_people_f ppf
+	  WHERE SYSDATE BETWEEN ppf.effective_start_date AND ppf.effective_end_date
+	]]>
+		</sql>
+		<!-- Lov 查询条件的列 -->
+		<query_condition>person_id,full_name</query_condition>
+		<!-- Lov 查询条件描述 -->
+		<query_condition_desc>编码,名称</query_condition_desc>
+		<!-- Lov 结果表的列 -->
+		<result_display>person_id,full_name</result_display>
+		<!-- Lov 结果表的列描述 -->
+		<result_display_desc>编码,名称</result_display_desc>
+		<!-- 无作用 -->
+		<return></return>
+	</lov>
+</root>

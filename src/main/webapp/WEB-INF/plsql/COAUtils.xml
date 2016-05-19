@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<calls>
+	<call id="hand.framework.coa.getCCID">
+	  <![CDATA[
+	  	DECLARE
+		l_coa_id NUMBER;
+		BEGIN
+			SELECT gsob.chart_of_accounts_id
+				INTO l_coa_id
+				FROM gl_sets_of_books   gsob,
+						 hr_operating_units hou
+			 WHERE gsob.set_of_books_id = hou.set_of_books_id
+				 AND hou.organization_id = #{orgId, mode = IN, jdbcType = NUMERIC};
+		
+			#{x_ccid, mode = OUT, jdbcType = NUMERIC} := fnd_flex_ext.get_ccid(application_short_name => 'SQLGL',
+																			   key_flex_code          => 'GL#',
+																			   structure_number       => l_coa_id,
+																			   validation_date        => to_char(SYSDATE,'YYYY/MM/DD HH24:MI:SS'),
+																			   concatenated_segments  => #{segments,mode=IN,jdbcType=VARCHAR});
+			#{x_msg,mode=OUT,jdbcType =VARCHAR} := fnd_flex_ext.get_message;
+		END;
+	  ]]>
+	</call>
+	
+		<call id="hand.framework.coa.getData">
+	  <![CDATA[
+		BEGIN
+		#{x_data, mode = OUT, jdbcType = NUMERIC}:= cux_common_utl.get_account_segements(
+		                                            p_ccid        =>#{cashUnWriteCcid,mode=IN,jdbcType=VARCHAR},
+													p_org_id      =>#{orgId, mode = IN, jdbcType = NUMERIC},
+													p_segment_num =>#{location, mode = IN, jdbcType = NUMERIC}
+													);
+		END;
+	  ]]>
+	</call>
+	
+	<call id="hand.framework.coa.getAccount">
+	  <![CDATA[
+		BEGIN
+		#{x_account, mode = OUT, jdbcType = VARCHAR}:= cux_common_utl.get_account_segements(
+                                                                            p_ccid =>#{x_ccid, mode = IN, jdbcType = NUMERIC} ,
+	                                                                        p_org_id=>#{orgId, mode = IN, jdbcType = NUMERIC}
+             );
+		END;
+	  ]]>
+	</call>
+	<call id="cux_common_utl.get_account_segements_desc">
+	  <![CDATA[
+		BEGIN
+		#{x_account_desc, mode = OUT, jdbcType = VARCHAR}:= cux_common_utl.get_account_segements_desc(
+                                                                            p_ccid =>#{x_ccid, mode = IN, jdbcType = NUMERIC} ,
+	                                                                        p_org_id=>#{orgId, mode = IN, jdbcType = NUMERIC}
+             );
+		END;
+	  ]]>
+	</call>
+
+</calls>

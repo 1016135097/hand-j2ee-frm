@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="hand-j2ee-frm:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="hand-j2ee-frm.war">
+      <element id="artifact" artifact-name="hand-j2ee-frm:war exploded" />
+    </root>
+  </artifact>
+</component>
