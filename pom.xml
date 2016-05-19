@@ -31,6 +31,15 @@
 			<!-- 表示开发的时候引入，发布的时候不会加载此包 -->
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-asm</artifactId>
+            <version>3.1.4.RELEASE</version>
+            <!--<groupId>asm</groupId>-->
+            <!--<artifactId>asm</artifactId>-->
+            <!--<version>3.3.1</version>-->
+        </dependency>
+
 		<!-- spring核心包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>

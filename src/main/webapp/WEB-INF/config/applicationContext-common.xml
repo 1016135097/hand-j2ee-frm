@@ -10,15 +10,9 @@
     <!-- 启用spring注解支持 -->
     <context:annotation-config/>
 
-    <!--<bean id="propertyConfigurer"-->
-    <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-    <!--<property name="location" value="/WEB-INF/config/db.properties" />-->
-    <!--</bean>-->
-    <!---->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <!--<value>/WEB-INF/config/db.properties</value>-->
                 <value>/WEB-INF/config/db.properties</value>
             </list>
         </property>

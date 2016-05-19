@@ -4,7 +4,7 @@ package hand.framework.plsql;
 import hand.framework.entity.CallableEntity;
 
 public class CallableConfig {
-//
+
 	private String id;
 	
 	private String sql;
