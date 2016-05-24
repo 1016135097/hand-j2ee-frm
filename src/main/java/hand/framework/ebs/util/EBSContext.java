@@ -1,6 +1,6 @@
 package hand.framework.ebs.util;
 
-import oracle.apps.fnd.security.HMAC;
+//import oracle.apps.fnd.security.HMAC;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class EBSContext {
 	
 	private byte[] macKey;
 	
-	private HMAC hmac;
+	//private HMAC hmac;
 	
 	private String langCode;
 	
@@ -155,7 +155,7 @@ public class EBSContext {
 		this.macKey = macKey;
 	}
 	
-
+/*
 	public HMAC getHmac() {
 		return hmac;
 	}
@@ -163,7 +163,7 @@ public class EBSContext {
 	public void setHmac(HMAC hmac) {
 		this.hmac = hmac;
 	}
-
+*/
 	public String getLangCode() {
 		return langCode;
 	}

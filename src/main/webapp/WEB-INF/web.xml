@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
-<!--xmlns="http://java.sun.com/xml/ns/javaee"-->
-<!--xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"-->
-<!--version="3.0">-->
-<!--<web-app xmlns:javaee="http://java.sun.com/xml/ns/javaee"-->
-<!--xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">-->
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
     <display-name>Servlet 2.5 Web Application</display-name>
     <context-param>
         <param-name>APPL_SERVER_ID</param-name>
-        <param-value>170DBC3A648D6838E0531F0211ACF3B430969723431959434693279372509300</param-value>
+        <param-value>2E2E72E6F3DB0331E05313D8E90A998330304419782304956964229124028249</param-value>
     </context-param>
 
     <context-param>

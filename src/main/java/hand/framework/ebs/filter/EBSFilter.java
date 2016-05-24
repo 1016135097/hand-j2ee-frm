@@ -7,7 +7,7 @@ import oracle.apps.fnd.ext.common.AppsRequestWrapper;
 import oracle.apps.fnd.ext.common.AppsRequestWrapper.WrapperException;
 import oracle.apps.fnd.ext.common.CookieStatus;
 import oracle.apps.fnd.ext.common.Session;
-import oracle.apps.fnd.security.HMAC;
+//import oracle.apps.fnd.security.HMAC;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -160,10 +160,10 @@ public abstract class EBSFilter implements Filter {
 
 		byte[] keys = (byte[])sessionInfo.get("MAC_KEY");
 		context.setMacKey(keys);
-		HMAC hmac = new HMAC(0);
-		hmac.setKey(keys);
-		context.setHmac(hmac);
-		
+		//HMAC hmac = new HMAC(0);
+		//hmac.setKey(keys);
+		//context.setHmac(hmac);
+
 		EBSContext.setContext(context);
 	}
 

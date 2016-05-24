@@ -1,6 +1,6 @@
 package hand.framework.ebs.util;
 
-import oracle.apps.fnd.security.HMAC;
+//import oracle.apps.fnd.security.HMAC;
 
 public class UrlUtils {
 
@@ -12,9 +12,10 @@ public class UrlUtils {
 
 	public static String generateSecureURL(String url) {
 		EBSContext context = EBSContext.getInstance();
-		HMAC hmac = context.getHmac();
+		//HMAC hmac = context.getHmac();
 
-		if ((url == null) || (hmac == null)) {
+		if ((url == null)// || (hmac == null)
+				) {
 			return url;
 		}
 
@@ -54,7 +55,8 @@ public class UrlUtils {
 			str2 = str1;
 		url = url.substring(0, j + 1) + str1
 				+ (str1.indexOf('?') == -1 ? QUES_MAC_EQ : AND_MAC_EQ)
-				+ hmac.getHMAC(str2, 2);
+				//+ hmac.getHMAC(str2, 2)
+		;
 
 		return url;
 	}
