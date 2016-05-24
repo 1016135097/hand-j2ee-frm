@@ -176,7 +176,7 @@
         <dependency>
             <groupId>oracle.apps.fnd</groupId>
             <artifactId>fndext</artifactId>
-            <version>2.0.0</version>
+            <version>2.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -220,8 +220,17 @@
             <version>1.9</version>
         </dependency>
     </dependencies>
+
     <build>
         <finalName>hand-j2ee-frm</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
