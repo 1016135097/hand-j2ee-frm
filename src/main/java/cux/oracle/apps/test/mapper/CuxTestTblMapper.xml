@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cux.oracle.apps.test.mapper.CuxTestTblMapper">
+	<sql id="General_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+
+	<select id="getAll" resultType="cux.oracle.apps.test.entity.CuxTestTblEO">
+		<![CDATA[
+			 SELECT 
+CREATED_BY as createdBy
+,ATTRIBUTE1 as attribute1
+,ROW_VERSION_NUMBER as rowVersionNumber
+,ATTIRBUTE_CATEGORY as attirbuteCategory
+,MY_NAME as myName
+,LAST_UPDATED_BY as lastUpdatedBy
+,MY_ID as myId
+,LAST_UPDATE_DATE as lastUpdateDate
+,CREATION_DATE as creationDate
+,MY_OTHER_ATTRIBTUES as myOtherAttribtues
+,LAST_UPDATE_LOGIN as lastUpdateLogin
+  FROM CUX_TEST_TBL
+		  ]]>
+	</select>
+	
+	<select id="getByCondition" resultType="cux.oracle.apps.test.entity.CuxTestTblEO">
+		<![CDATA[
+			 SELECT 
+CREATED_BY as createdBy
+,ATTRIBUTE1 as attribute1
+,ROW_VERSION_NUMBER as rowVersionNumber
+,ATTIRBUTE_CATEGORY as attirbuteCategory
+,MY_NAME as myName
+,LAST_UPDATED_BY as lastUpdatedBy
+,MY_ID as myId
+,LAST_UPDATE_DATE as lastUpdateDate
+,CREATION_DATE as creationDate
+,MY_OTHER_ATTRIBTUES as myOtherAttribtues
+,LAST_UPDATE_LOGIN as lastUpdateLogin
+  FROM CUX_TEST_TBL
+		  ]]>
+		<include refid="General_Where_Clause"></include>
+	</select>
+
+    <select id="saveOrUpdate" parameterType="cux.oracle.apps.test.entity.CuxTestTblEO" statementType="CALLABLE" flushCache="true" useCache="false">
+   		<![CDATA[
+			 Begin 
+CUX_TEST_TBL_4j_PKG.insert_or_update_row(p_CREATED_BY=>#{createdBy,mode=IN,jdbcType=NUMERIC}
+,p_ATTRIBUTE1=>#{attribute1,mode=IN,jdbcType=VARCHAR}
+,x_ROW_VERSION_NUMBER=>#{rowVersionNumber,mode=INOUT,jdbcType=NUMERIC}
+,p_ATTIRBUTE_CATEGORY=>#{attirbuteCategory,mode=IN,jdbcType=VARCHAR}
+,p_MY_NAME=>#{myName,mode=IN,jdbcType=VARCHAR}
+,p_LAST_UPDATED_BY=>#{lastUpdatedBy,mode=IN,jdbcType=NUMERIC}
+,x_MY_ID=>#{myId,mode=INOUT,jdbcType=NUMERIC}
+,p_LAST_UPDATE_DATE=>#{lastUpdateDate,mode=IN,jdbcType=DATE}
+,p_CREATION_DATE=>#{creationDate,mode=IN,jdbcType=DATE}
+,p_MY_OTHER_ATTRIBTUES=>#{myOtherAttribtues,mode=IN,jdbcType=VARCHAR}
+,p_LAST_UPDATE_LOGIN=>#{lastUpdateLogin,mode=IN,jdbcType=NUMERIC}
+); end;
+
+		  ]]>
+	</select>
+     
+     <select id="deleteById" statementType="CALLABLE" flushCache="true" useCache="false">
+    	<![CDATA[
+			 Begin CUX_TEST_TBL.delete_row(p_MY_ID=>#{id,mode=IN,jdbcType=NUMERIC}); End;
+		  ]]>
+     </select>
+</mapper>
