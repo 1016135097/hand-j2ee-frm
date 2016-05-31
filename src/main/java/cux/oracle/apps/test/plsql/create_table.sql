@@ -11,4 +11,6 @@ create table CUX_TEST_TBL
        last_update_date date NOT NULL,
        last_updated_by number NOT NULL,
        last_update_login number NOT NULL
-)
+);
+
+CREATE SEQUENCE cux_test_tbl_s;

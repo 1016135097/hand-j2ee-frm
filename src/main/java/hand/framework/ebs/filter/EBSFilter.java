@@ -142,6 +142,7 @@ public abstract class EBSFilter implements Filter {
 		}
 
 		Session session = wrappedRequest.getAppsSession();
+
 		Map<String, Object> sessionInfo = session.getRawInfo();
 		context.setSessionInfo(sessionInfo);
 		String agent = wrappedRequest.getEbizInstance().getAppsServletAgent();
@@ -157,6 +158,7 @@ public abstract class EBSFilter implements Filter {
 		context.setSessionId((BigDecimal) sessionInfo.get("SESSION_ID"));
 		context.setUserId((BigDecimal) sessionInfo.get("USER_ID"));
 		context.setUserName(session.getUserName());
+		context.setLoginId(new BigDecimal(-1));
 
 		byte[] keys = (byte[])sessionInfo.get("MAC_KEY");
 		context.setMacKey(keys);
